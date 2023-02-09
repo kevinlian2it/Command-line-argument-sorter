@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "mystring.h"
-
 /**
  * Take an array of char* pointers and print each of the strings to standard
  * out. This function must use only pointer arithmetic and no array

@@ -5,8 +5,7 @@
 #include <stddef.h> /* for size_t */
 #include <ctype.h>
 
-/**
- * This function calculates the length of a character array passed in,
+/* This function calculates the length of a character array passed in,
  * returning the length as a size_t. Calculation must be done via pointer
  * arithmetic. No credit will be given for calling strlen() in <string.h>.
  *

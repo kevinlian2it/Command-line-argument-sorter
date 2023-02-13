@@ -21,3 +21,31 @@ void print_list(linked_list *list, void (*print_function)(void*)) {
                          (void)printf("NULL");
     printf("}\n\n");
 }
+
+linked_list* create_linked_list() {
+	linked_list *list = malloc(sizeof(linked_list));
+	if(list == NULL) {
+		return NULL;
+	}
+	list->head = NULL;
+	list->tail = NULL;
+	list->size = 0;
+
+	return list;
+}
+
+bool insert_in_order(linked_list *list, void *data, int (*cmp)(const void*, const void*)) {
+
+	if(list == NULL) {
+		return false;
+	}
+	node *new_node = create_node(data);
+	if(new_node == NULL) {
+		return false;
+	}
+	if (list->head == NULL) {
+		list->head = new_node;
+		list->tail = new_node;
+		list->size++;
+		return true;
+	}

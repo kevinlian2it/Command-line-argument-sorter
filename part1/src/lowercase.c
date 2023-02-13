@@ -25,11 +25,11 @@ void display_strings(char **strings) {
 static char **copy_args_lowercase(int argc, char **argv) {
     char **copy = malloc((argc+1)*sizeof(char *));
     if (!copy) return NULL;
-    for (int i=0;i!=argc;i++){
+    for (int i=1;i!=argc;i++){
 	size_t len = my_strlen(argv[i]);
 	copy[i] = malloc(len+1);
 	if (!copy[i]){ 
-	    for(int j=0;j!=i;j++){
+	    for(int j=1;j!=i;j++){
 		free(copy[j]);
 	    }
 	    free(copy);

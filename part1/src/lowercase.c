@@ -23,22 +23,22 @@ void display_strings(char **strings) {
 }
 
 static char **copy_args_lowercase(int argc, char **argv) {
-    char **copy = malloc((argc+1)*sizeof(char *));
+    char **copy = malloc((argc - 1 + 1) * sizeof(char *));
     if (!copy) return NULL;
-    for (int i=0;i!=argc;i++){
+    for (int i = 1; i != argc; i++) {
 	size_t len = my_strlen(argv[i]);
-	copy[i] = malloc(len+1);
-	if (!copy[i]){ 
-	    for(int j=0;j!=i;j++){
+	copy[i - 1] = malloc(len + 1);
+	if (!copy[i - 1]) {
+	    for (int j = 0; j != i - 1; j++) {
 		free(copy[j]);
 	    }
 	    free(copy);
 	    return NULL;
 	}
-	my_strcpy(copy[i],argv[i]);
-	my_strlower(copy[i]);
+	my_strcpy(copy[i - 1], argv[i]);
+	my_strlower(copy[i - 1]);
     }
-    copy[argc] = NULL;   
+    copy[argc - 1] = NULL;
     return copy;
 }
 

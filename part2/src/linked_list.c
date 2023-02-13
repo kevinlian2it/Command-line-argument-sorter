@@ -49,3 +49,38 @@ bool insert_in_order(linked_list *list, void *data, int (*cmp)(const void*, cons
 		list->size++;
 		return true;
 	}
+	node *current = list->head;
+	if (cmp(data, current->data) < 0) {
+                new_node->next = list->head;
+                list->head = new_node;
+                list->size++;
+                return true;
+        }
+	while (current->next != NULL && cmp(data, current->next->data) > 0) {
+		current = current->next;
+	}
+
+	new_node->next = current->next;
+	current->next = new_node;
+	if(new_node->next == NULL) {
+		list->tail = new_node;
+	}
+	list->size++;
+
+	return true;
+}
+
+void free_list(linked_list *list, void (*free_data)(void *)) {
+    if (list == NULL) {
+        return;
+    }
+
+    node *current = list->head;
+    while(current != NULL) {
+        node *next = current->next;
+        free_node(current, free_data);
+        current = next;
+    }
+    free(list);
+}
+

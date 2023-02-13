@@ -13,6 +13,6 @@ node* create_node(void *data) {
 
 void free_node(node *n, void (*free_data)(void *)) {
     if(n == NULL) return;
-`	free_data(n->data);
+	free_data(n->data);
     	free(n);
 }

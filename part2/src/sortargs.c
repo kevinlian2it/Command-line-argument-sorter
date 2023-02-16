@@ -36,3 +36,8 @@ int main(int argc, char **argv) {
 	free_list(list,free_string);
     return EXIT_SUCCESS;
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ca9b22bb86dc14fb54609e2e6103b1a98f85876b

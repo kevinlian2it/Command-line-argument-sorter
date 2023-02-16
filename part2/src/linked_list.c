@@ -83,3 +83,7 @@ void free_list(linked_list *list, void (*free_data)(void *)) {
     }
     free(list);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ca9b22bb86dc14fb54609e2e6103b1a98f85876b

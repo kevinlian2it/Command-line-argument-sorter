@@ -11,7 +11,7 @@ node* create_node(void *data) {
     return n;
 }
 
-void free_node(node *n, void (*free_data)(void *)) {
-    free_data(n->data);
-    free(n);
+void free_node(node *n, void(*free_data)(void *)){
+	free_data(n->data);
+	free(n);
 }

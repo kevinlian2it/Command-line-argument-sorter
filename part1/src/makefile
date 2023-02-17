@@ -12,5 +12,6 @@ lowercase.o: lowercase.c
 mystring.o: mystring.c mystring.h
 	$(CC) $(CFLAGS) -c mystring.c
 
+.PHONY: clean
 clean:
 	rm -f lowercase lowercase.o mystring.o

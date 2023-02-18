@@ -35,41 +35,35 @@ linked_list* create_linked_list() {
 }
 
 bool insert_in_order(linked_list *list, void *data, int (*cmp)(const void*, const void*)) {
-
-	if(list == NULL) {
-		return false;
-	}
 	node *new_node = create_node(data);
-	if(new_node == NULL) {
-		return false;
-	}
-	if (list->head == NULL) {
-		list->head = new_node;
-		list->tail = new_node;
-		list->size++;
-		return true;
-	}
-	node *current = list->head;
-	if (cmp(data, current->data) < 0) {
-                new_node->next = list->head;
-                list->head = new_node;
-                list->size++;
-                return true;
-        }
-	while (current->next != NULL && cmp(data, current->next->data) > 0) {
-		current = current->next;
-	}
+    	if (list->head == NULL) { // list is empty
+        	list->head = new_node;
+        	list->tail = new_node;
+        	list->size = 1;
+        	return true;
+    	}
 
-	new_node->next = current->next;
-	current->next = new_node;
-	if(new_node->next == NULL) {
-		list->tail = new_node;
-	}
-	list->size++;
+    	node *current = list->head;
+    	node *previous = NULL;
 
+    	while(current != NULL && cmp(&new_node->data, &current->data) > 0) {
+        	previous = current;
+        	current = current->next;
+    	}
+
+    	if(previous == NULL) { // new node is the new head of the list
+        	new_node->next = list->head;
+        	list->head = new_node;
+    	} else if(current == NULL) { // new node is the new tail of the list
+        	previous->next = new_node;
+       	 	list->tail = new_node;
+    	} else { // new node is somewhere in the middle of the list
+        	previous->next = new_node;
+        	new_node->next = current;
+    	}
+    	list->size++;
 	return true;
 }
-
 void free_list(linked_list *list, void (*free_data)(void *)) {
     if (list == NULL) {
         return;
@@ -83,7 +77,3 @@ void free_list(linked_list *list, void (*free_data)(void *)) {
     }
     free(list);
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> ca9b22bb86dc14fb54609e2e6103b1a98f85876b
